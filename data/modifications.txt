@@ -1,0 +1,7 @@
+"NumMods=3 
+C2H3N1O1,C,fix,any,Carbamidomethyl
+O1,M,opt,any,Oxidation
+6.020129,K,opt,any,Heavy-Lysine-13C6
+6.020129,R,opt,any,Heavy-Arginine-13C6
+8.014199,K,opt,any,Heavy-Lysine-13C6-15N2
+10.008269,R,opt,any,Heavy-Arginine-13C6-15N4"
