@@ -31,9 +31,9 @@ args = parser.parse_args()
 #onlyfiles=glob.glob(args.blast[0]+"/*.assemblies.fasta.transdecoder.pep.csv")
 #print(args.blast[0])
 f=args.blast[0]
-fBase=str(os.path.join(args.blast[0],f)).replace(".identified.loc.csv","")
+fBase=str(os.path.basename(f)).replace(".identified.loc.csv","")
 print(fBase)
-with open(fBase+"_annotation.csv", 'w', newline='') as outfile:
+with open(args.output[o]+fBase+"_annotation.csv", 'w', newline='') as outfile:
 	outfile.write("ORF Id,Protein ID,Class,Variation,Species\n");
 	blast=readFile(f,',')
 	known=readFile(args.known[0],',')
@@ -107,7 +107,3 @@ with open(fBase+"_annotation.csv", 'w', newline='') as outfile:
 	#print(novel['query_name'].tolist())
 	for i in range(0,len(novelList)):
 		outfile.write(novelList[i]+",-,novel,0,-\n")
-    #cmd="python  -b "+str(os.path.join(args.blast[0],f))+" -k "+fBase+"_known.csv"+" -s "+fBase+"_knownVar.csv -v "+fBase+".vcf -i "+fBase+"_iso.csv -j "+fBase+"_isoVar.csv"
-    #print(cmd)
-    #os.system(cmd)
-    #break
