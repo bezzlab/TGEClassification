@@ -1,16 +1,16 @@
-#TGEClassification
+# TGEClassification
 TGEClassififcation is a collection of tools for automated classififcation of ORFs identified from PIT analysis.
 
-##Tools/Software pre-requisites:
+## Tools/Software pre-requisites:
 
 Python 3.6, panda 0.19, numpy, Bio-python, shell, R ( packages : seqinr,ada,nnet,randomForest,caret), MSGF+, BLAST, mzIdentML-lib
 
-##Introduction
+## Introduction
 
 Our pipeline requires assembled RNA-seq data and mass-spectrometry raw reads converted in mgf format. This classification pipeline has been tested with RNA-Seq data assembled using Trinity and PASA. We use MSGF+ for protein identification amd mzidentML-lib
 for post-processing, such as FRD calculation, thresholding and protein grouping. Our tools identify To use our pipleine you need following files.
 
-###Files
+### Files
 1. PASA assembled Transcript file
 2. Transdecoder predicted ORFs
 3. Reference proteome in fasta format from Uniprot.
@@ -20,11 +20,11 @@ for post-processing, such as FRD calculation, thresholding and protein grouping.
 7. Mass-spectra file in mfg format.
 8. GFF3 file produced by PASA for visualization (optional)
 
-##How to use the pipeline?
+## How to use the pipeline?
 
 Once pre-requisite tools/softwares have been installed and added to the path, you can simply download the scripts and run them from the code directory.
 
-##How to run?
+## How to run?
 
 You need to run the tools in following order. A launch script will be added soon.
 
