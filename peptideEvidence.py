@@ -507,29 +507,6 @@ args = parser.parse_args()
 print(args.vcf[0])
 #v=readFile(args.vcf[0],'\t')
 #print(v.columns.values)
-'''
-PSMFileName="D:/data/Results/Human-Adeno/Identification/PASA/sORF/pasa_assemblyV1+fdr+th+grouping.csv"
-ProtFileName="D:/data/Results/Human-Adeno/Identification/PASA/sORF/pasa_assemblyV1+fdr+th+grouping+prt.csv"
-#vcfFileName="D:/data/blast/blastCSV/PASA/Human-Adeno/human_adeno_mydb_pasa.assemblies_ORFs_with_Location_VariationV7.vcf"
-
-## New Files
-#vcfIdentifiedProteins="D:/data/blast/blastCSV/PASA/Human-Adeno/human_adeno_mydb_pasa.assemblies_ORFs_VariationV7IdentifiedPep2Only.vcf"
-newPSMFileName="D:/data/Results/Human-Adeno/Identification/PASA/sORF/pasa_assemblyV1+fdr+th+groupingVariationEvidencePep2.csv"
-newVcfFileName="D:/data/blast/blastCSV/PASA/Human-Adeno/human_adeno_mydb_pasa.assemblies_ORFs_with_Location_VariationV7PeptideEvidencePep2.vcf"
-subVcfFileName="D:/data/blast/blastCSV/PASA/Human-Adeno/human_adeno_mydb_pasa.assemblies_ORFs_IdentifiedORFsVariationPep2.vcf"
-#######
-PSMFileName="pepTest.csv"
-vcfFileName="vcfTest.vcf"
-
-## New Files
-newPSMFileName="pepVariationEvidence.csv"
-newVcfFileName="vcfPeptideEvidence.vcf"
-#############
-'''
 pepCount=1
-#subsettingIdentifiedORFVariation(ProtFileName, vcfFileName, subVcfFileName, pepCount)
-#main(PSMFileName, subVcfFileName, newVcfFileName, newPSMFileName)
-#if IdentifyProteinIsoformSAP is run on identified ORFs, then we neither need to filter the vcf file nor the psm file.
-
 main(args.psm[0], args.vcf[0], args.vcfout[0], args.psmout[0])
 

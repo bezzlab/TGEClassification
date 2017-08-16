@@ -3,7 +3,6 @@
 from __future__ import division
 from os.path import expanduser
 import sys
-#sys.path.append('/nfs/ma/home/shyama/installed_soft/BiopythonCluster/lib64/python')
 import Bio
 import os
 import glob
@@ -11,17 +10,6 @@ import math
 
 from Bio.Blast import NCBIXML
 
-#path = '/Volumes/ma-home/SYBARIS/WGS-AF293/Shyama/test/xml_output/'
-#path = '/Volumes/ma-home-1/shyama/outputs/SYBARIS/BLAST/OG/xml_output_default_gap/'
-#path = '/Volumes/ma-home-1/shyama/outputs/SYBARIS/BLAST/AF293/xml_output_gap/'
-#path = '/Volumes/ma-home/shyama/outputs/SYBARIS/BLAST/OG/xml_output_gap_coverage/'
-#print sys.argv[1:];
-#path = '/nfs/ma/home/shyama/DATA/SYBARIS/data/blast/' #sys.argv[1] #
-#files = glob.glob('contigsAllReferenceGuidedBlast/*.csv')
-#files = glob.glob('whole*/Trinity_blast_transcript.xml')
-#files = glob.glob('E:\Data\HUMAN\database\Trinity\*.xml');
-#files = glob.glob(r"D:\New folder\blast\uni*.xml");
-#infile=path
 print("In:"+sys.argv[1])
 #files=glob.glob(sys.argv[1]+"*.xml");
 files=glob.glob(sys.argv[1]);
@@ -34,13 +22,11 @@ print("out:"+path)
 if not os.path.exists(path):
     os.makedirs(path)
 
-#files=["blast/B07BNABXX_2_4.out","blast/C023MABXX_3_8.out","blast/D0ACKACXX_1_12.out","blast/B07BNABXX_1_9.out","blast/C023MABXX_5_2.out"]
-
 for infile in files: #glob.glob('blast/*.out'):
     if os.path.getsize(infile)>0:
         file_handle = open(infile)
         
-        out_handle = open(os.path.join(path,os.path.basename(infile)+'2.csv'),'w')
+        out_handle = open(os.path.join(path,os.path.basename(infile)+'.csv'),'w')
         #out_handle.write("file,query_name,query_length,match,hit_def,hit_length,e-value,p-value,identitie,align_length,gap,good_match,long_match,score,more,s_st,s_end\n") #seq,sseq,
         out_handle.write("query_name,query_length,match,hit_count,hit_def,hit_length,e-value,p-value,identitie,align_length,gap,good_match,long_match,score,more,q_st,q_end,s_st,s_end,seq,sseq,match_seq\n")
         blast_record_itr = Bio.Blast.NCBIXML.parse(file_handle)

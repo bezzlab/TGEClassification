@@ -1,6 +1,6 @@
 ###### this code reads the the output of contigStat.py which is essentially BLAST result in csv format. Second input to this an excel file downloaded
 ###### from the Uniprot website that tells us the chomosome location of the proteins. In future this step needs to be done programatically. Third and
-###### the last parameter to this script is the output path. Output of this script is similar to that of the first input file, with an extra column for
+###### the '-o' parameter to this script is the output path. Output of this script is similar to that of the first input file, with an extra column for
 ###### the location of the protein.
 
 import os
@@ -97,11 +97,9 @@ parser = argparse.ArgumentParser(description='This script read output of contigS
 parser.add_argument("-b", "--blast", nargs=1, required=True, help="full path of blast csv file", metavar="PATH")
 parser.add_argument("-u", "--uniprot", nargs=1, required=True, help="full path of uniprot file", metavar="PATH")
 parser.add_argument("-o", "--output", nargs=1, required=True, help="full path of output file", metavar="PATH")
-parser.add_argument("-n", "--name", nargs=1, default=[0], help="full path of output file", metavar="PATH")
-parser.add_argument("-l", "--location", nargs=1, default=[8], help="full path of output file", metavar="PATH")
+parser.add_argument("-n", "--name", nargs=1, default=[0], help="Protein ID column. [index stars at 0]", metavar="PATH")
+parser.add_argument("-l", "--location", nargs=1, default=[8], help="Protein chromosome column. [index stars at 0]", metavar="PATH")
 args = parser.parse_args()
 print(args)
 idx=4
 read(args.blast[0], args.uniprot[0], args.output[0],idx, args.name[0], args.location[0])
-#read('D:/data/blast/blastCSV/PASA/Human-Adeno/human_adeno_mydb_pasa.assemblies_ORFs.csv','D:/data/Data/uniprot-Homo+sapiens960613_04_2015.xls','D:/data/blast/blastCSV/human_adeno_mydb_pasa.assemblies_ORFs_with_LocationV3.csv')
-#D:\Code\Proteomics\Python\IsoformsSAP>python UniProteinLocation.py -b D:\data\Bristol\HumanAdeno\PASATransdecoder\pasa_transdecoder_nonstar_identified.csv -u D:/data/Data/uniprot-Homo+sapiens960613_04_2015.xls -o D:\data\Bristol\HumanAdeno\PASATransdecoder\pasa_transdecoder_nonstar_identified_Location.csv

@@ -480,7 +480,7 @@ protRevStr="XXX_"
 protContStr="CONT_"
 pepTh=1
 pepColumn='proteinacc_start_stop_pre_post_;'
-parser = argparse.ArgumentParser(description='This script read output of UniProteinLocation.py and identify variations')
+parser = argparse.ArgumentParser(description='This script read output of UniProteinLocation.py, SplitAnnotationFile.py and finds peptide evidence for protein isoforms')
 parser.add_argument("-b", "--blast", nargs=1, required=True, help="full path of blast csv file", metavar="PATH")
 parser.add_argument("-a", "--annotation", nargs=1, required=True, help="full path to the annotation file", metavar="PATH")
 #parser.add_argument("-j", "--isovar", nargs=1, required=True, help="full path to the isoforms with variation file", metavar="PATH")
