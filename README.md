@@ -23,11 +23,18 @@ for post-processing, such as FDR calculation, thresholding and protein grouping.
 
 ## How to use the pipeline?
 
-Once pre-requisite tools/softwares have been installed and added to the path, you can simply download the scripts and run them from the code directory.
+Once pre-requisite tools/softwares have been installed and added to the path, you can simply download the scripts and run Launch.sh from the code directory. You can run individual scripts as well.
 
 ## How to run?
 
-You need to run the tools in following order. A launch script will be added soon.
+Launch.sh will run all the scripts of the pipeline in right orders.
+
+### Run Launch.sh
+
+You need all the files mentioned in "Files" section to run Launch.sh.
+usage: Launch.sh [-u proteomefasta] [-p orffasta] [-r transcriptfasta] [-o outfolder] [-s mgffile] [-m modificationsFile] [-t tolerance deafault 10ppm] [-i instrument, deafault 1, options 1. Orbitrap/FTICR, 2. TOF, 3. Q-Exactive] [-f fragment method, default 1. Possoble values 1.CID, 2. ETD, 3. HCD] [-d decoysearch 0|1 default 1] [-c contaminantfile default crap.fasta] [-l minlengthpeptide interger default 8] [-v TSV file conatining reference protein location] [-g transdecoder generated sample.genome.gff3 file]
+
+If you decide to run the scripts individually, run them in following order.
 
 1. runProteinIdentificationAndPostProcessing_cluster.py with Transdecoder predicted ORFs [PIT Search]
 2. runProteinIdentificationAndPostProcessing_cluster.py with Reference fasta [Standard Search]
