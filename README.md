@@ -3,12 +3,13 @@ TGEClassififcation is a collection of tools for automated classififcation of ORF
 
 ## Tools/Software pre-requisites:
 
-Python 3.6, panda 0.19, numpy, Bio-python, shell, R ( packages : seqinr,ada,nnet,randomForest,caret), MSGF+, BLAST, mzIdentML-lib
+Python 3.6, panda 0.19, numpy, Bio-python, shell, R ( packages : seqinr,ada,nnet,randomForest,caret), BLAST, MSGF+ (included), mzIdentML-lib 1.6 (included)
+This pipeline has been tested on Red Hat Enterprise Linux HPC Node (v. 6) (64 bit).
 
 ## Introduction
 
 Our pipeline requires assembled RNA-seq data and mass-spectrometry raw reads converted in mgf format. This classification pipeline has been tested with RNA-Seq data assembled using Trinity and PASA. We use MSGF+ for protein identification amd mzidentML-lib
-for post-processing, such as FRD calculation, thresholding and protein grouping. Our tools identify To use our pipleine you need following files.
+for post-processing, such as FDR calculation, thresholding and protein grouping. Our tools identify To use our pipleine you need following files.
 
 ### Files
 1. PASA assembled Transcript file
@@ -43,4 +44,6 @@ You need to run the tools in following order. A launch script will be added soon
 13. peptideEvidenceIsoforms.py - uses output from step 7, detailed annotation file from step 10 and filtered PSM csv file from step 3 to find isoform specific peptide evidence.
 14. IsoformScoring.py - this tool uses filtered Amino acid fasta file and protein and peptide/PSM outputs from MSGF+ for PIT search (step 3) and standard search (step 4) and vcf files from step 12 and 13. This tool predicts the probability of variants.
 
- 
+## Run test data
+
+You can try running the test data to check that all the components are working.
