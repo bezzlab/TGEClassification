@@ -36,18 +36,31 @@ You need all the files mentioned in "Files" section to run Launch.sh.
 usage: Launch.sh
 
 [-u proteomefasta]
+
 [-p orffasta]
+
 [-r transcriptfasta]
+
 [-o outfolder]
+
 [-s mgffile]
+
 [-m modificationsFile]
+
 [-t tolerance deafault 10ppm]
+
 [-i instrument, deafault 1, options 1. Orbitrap/FTICR, 2. TOF, 3. Q-Exactive]
+
 [-f fragment method, default 1. Possoble values 1.CID, 2. ETD, 3. HCD]
+
 [-d decoysearch 0|1 default 1] [-c contaminantfile default crap.fasta]
+
 [-l minlengthpeptide interger default 8]
+
 [-v TSV file conatining reference protein location]
+
 [-g transdecoder generated sample.genome.gff3 file]
+
 
 If you decide to run the scripts individually, run them in following order.
 
