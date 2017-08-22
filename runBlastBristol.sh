@@ -76,9 +76,7 @@ if [ -f $prot ]; then
 	echo "blastp -db $fastaPath/$proteome.aa -query $prot.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.canonical.xml -outfmt 5 -evalue 1 -matrix BLOSUM80"
 	#blastp -db $fastaPath/$proteome.aa -query $prot.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.canonical.xml -outfmt 5 -evalue 1 -matrix BLOSUM80
 	blastp -db $fastaPath/$proteome.aa -query $out$sample.assemblies.fasta.transdecoder.pep.identified.fasta.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.xml -outfmt 5 -evalue 1 -matrix $matrix
-	cd /data/home/btw796/Code2/SYBARIS/Python
-	#python3.4 contigStat.py $out/$sample.assemblies.fasta.transdecoder.pep.identified.canonical.xml $out
-	#python contigStat.py $out/$sample.assemblies.fasta.transdecoder.pep.identified.xml $out
+
 fi
 
 
