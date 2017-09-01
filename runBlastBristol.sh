@@ -60,22 +60,22 @@ if [ -f $fastaPath/$proteome.aa.pin ]; then
 else
 	echo "ERROR: The BLASTDb does not exist"
 	echo "makeblastdb -in $uni -dbtype prot -out $fastaPath/$proteome.aa"
-	#makeblastdb -in $uni -dbtype prot -out $fastaPath/$proteome.aa
+	makeblastdb -in $uni -dbtype prot -out $fastaPath/$proteome.aa
 fi
 
 if [ -f $prot ]; then
-    sample=$(basename $prot | sed -e "s/.assemblies.fasta.transdecoder.pep.identified.fasta//g")
+    sample=$(basename $prot | sed -e "s/.identified.fasta//g")
 	#cd $DIR$sample
 	echo $sample
-	cp $prot $prot.nostar.fasta
-	mv $prot.nostar.fasta $out
-	sed -i 's/\*//g' $out$sample.assemblies.fasta.transdecoder.pep.identified.fasta.nostar.fasta
-	if [ ! -d $out ]; then
-		mkdir -p $out
-	fi
-	echo "blastp -db $fastaPath/$proteome.aa -query $prot.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.canonical.xml -outfmt 5 -evalue 1 -matrix BLOSUM80"
+	cp $prot $out$sample.nostar.fasta
+	#mv $prot.nostar.fasta $out
+	sed -i 's/\*//g' $out$sample.nostar.fasta
+	# if [ ! -d $out ]; then
+	# 	mkdir -p $out
+	# fi
+	echo "blastp -db $fastaPath/$proteome.aa -query $out$sample.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.identified.xml -outfmt 5 -evalue 1 -matrix BLOSUM80"
 	#blastp -db $fastaPath/$proteome.aa -query $prot.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.canonical.xml -outfmt 5 -evalue 1 -matrix BLOSUM80
-	blastp -db $fastaPath/$proteome.aa -query $out$sample.assemblies.fasta.transdecoder.pep.identified.fasta.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.assemblies.fasta.transdecoder.pep.identified.xml -outfmt 5 -evalue 1 -matrix $matrix
+	blastp -db $fastaPath/$proteome.aa -query $out$sample.nostar.fasta -gapopen 6 -gapextend 2 -out $out/$sample.identified.xml -outfmt 5 -evalue 1 -matrix $matrix
 
 fi
 

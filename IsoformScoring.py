@@ -133,10 +133,10 @@ def trainTestModel(annot, orfs, refs, digestFile, isoDigestFile, conseqFile, iso
     digestedDF=pd.DataFrame()
     for i in range(knownDigested.shape[0]):
         #print(i)
-        print(knownDigested.iloc[i])
+        #print(knownDigested.iloc[i])
         digestedDF=digestedDF.append(pd.DataFrame(knownDigested.iloc[i]),ignore_index=True)
     #eTime=time.clock()
-    print(digestedDF.columns.values)
+    #print(digestedDF.columns.values)
     digestedDF=digestedDF[['Protein','Peptide','Start','Stop']]
     
     ##Check if all the identified peptides from known orfs are there in the digested peptide dataframe
@@ -199,7 +199,7 @@ def trainTestModel(annot, orfs, refs, digestFile, isoDigestFile, conseqFile, iso
     restRefDigestedDF.loc[restRefDigestedDF['PSM-level q-value'].isnull(),'PSM-level q-value']=1
     print("restRefDigestedDF shape")
     print(restRefDigestedDF.shape)
-    print(restRefDigestedDF.columns.values)
+    #print(restRefDigestedDF.columns.values)
     #Merge rest ORFs peptides with reference peptides
     restDigestedDF=restDigestedDF.append(restRefDigestedDF)
     
@@ -243,7 +243,7 @@ def scoring(vcfFile, vcfIsoFile, annot, sssFile, restOut):
         ##For each TGE, find all variations, SAPs, ALT, INDELs, boundary variations.
         #orfId=restOrfsAnnot.iloc[i]['mrna']
         ##If this one has class "known variation" then check vcf file for variation location.
-        print("i:"+str(i))
+        #print("i:"+str(i))
         if restOrfsAnnot.loc[i]['Class']=="known variation":
             #We only need to check vcf
             #if this orf is not found in the vcf file, that means the variation happend
@@ -281,7 +281,7 @@ def scoring(vcfFile, vcfIsoFile, annot, sssFile, restOut):
             varPeps=getPeptideMutation(orfVars,testSSS)
             print("varPeps:")
             #print(varPeps['ref'].shape)
-            print(varPeps)
+            #print(varPeps)
             #scores1=isoformScore2(varPeps)
             #scores1=isoformScore3(varPeps)
             scores1=isoformScore4(varPeps)
@@ -290,12 +290,12 @@ def scoring(vcfFile, vcfIsoFile, annot, sssFile, restOut):
             isoVarPeps=getPeptideBoundary(orfVars,testSSS)
             print("isVarPeps:")
             #print(isoVarPeps.shape)
-            print(isoVarPeps)
+            #print(isoVarPeps)
             if restOrfsAnnot.loc[i]['mRNA']=='asmbl_4103|m.42327':
                 print("Polymorpic peptides:")
-                print(varPeps)
+                #print(varPeps)
                 print("Iso peptides:")
-                print(isoVarPeps)
+                #print(isoVarPeps)
             ##isoVarPeps is a dictionary with two keys, 'ref' and 'orf'
             #scores2=isoformScore2(isoVarPeps)
             #scores2=isoformScore3(isoVarPeps)
@@ -312,7 +312,7 @@ def scoring(vcfFile, vcfIsoFile, annot, sssFile, restOut):
 def refPeptide(SSS, prtId, refVarPeps, start, end):
     print("REFPEPTIDE function")
     print("refVarPeps object")
-    print(refVarPeps)
+    #print(refVarPeps)
     if refVarPeps[refVarPeps['Identified']=='Identified'].shape[0]==0:
         ##No peptide was identified for standard/reference protein either. Hence the score entirely depends on SSS score.
         #refVarPepGrp=refVarPeps.groupby('Start')
@@ -336,7 +336,7 @@ def refPeptide(SSS, prtId, refVarPeps, start, end):
         print("Identified peptide")
         refIdent=refVarPeps[refVarPeps['Identified']=='Identified']
         refIdentSorted=refIdent.sort_values(by='Start')
-        print(refIdentSorted)
+        #print(refIdentSorted)
         #print("Print in refPeptide, after sort")
         seqRefVarPeps=pd.DataFrame()
         for j in range(0,refIdentSorted.shape[0]):
@@ -356,7 +356,7 @@ def refPeptide(SSS, prtId, refVarPeps, start, end):
                     else:
                         seqRefVarPeps=nonOverPep #nonOverlappingPeptide(varPeps, start, int(refIdentSorted.iloc[j]['Start'])-1)
                     print("J:"+str(j)+ "seqRefVarPeps:")
-                    print(seqRefVarPeps)
+                    #print(seqRefVarPeps)
             #seqRefVarPeps=seqRefVarPeps.append(refIdentSorted.iloc[j])
             start=int(refIdentSorted.iloc[j]['Stop'])+1
             print("Adding Identified peptide")
@@ -376,7 +376,7 @@ def refPeptide(SSS, prtId, refVarPeps, start, end):
             else:
                 seqRefVarPeps=identPep
             print("After adding identified peptide seqRefVarPeps")
-            print(seqRefVarPeps)
+            #print(seqRefVarPeps)
         ##following code is to add all the peptides from end of last identified peptide till end of refVarPeps list.
         #end=max(refVarPeps['Start'])
         if start<=end:
@@ -397,7 +397,7 @@ def refPeptide(SSS, prtId, refVarPeps, start, end):
         else:
             print("Last identified covers till the end of the variation")
         print("In refPeptide seqRefVarPeps")
-        print(seqRefVarPeps)
+        #print(seqRefVarPeps)
         return seqRefVarPeps
 
 def getPeptideBoundary(orfVars,SSS):
@@ -447,34 +447,34 @@ def getPeptideBoundary(orfVars,SSS):
             print("ERROR: Iso variation type should contain either 5prime or 3prime")
         refVarPeps=extractPeptide(SSS, prtId, rstart, rstop)
         print("getPeptideBooundary:refVarpeps before refPeptide")
-        print(refVarPeps)
+        #print(refVarPeps)
         if refVarPeps.shape[0]>0:
             if refVarNonOverPeps.shape[0]>0:
                 print("Calling refPeptide with refVarNonOverPeps, non-zero refVarNonOverPeps")
                 refVarNonOverPeps=refVarNonOverPeps.append(refPeptide(SSS, prtId, refVarPeps, rstart, rstop))
-                print(refVarNonOverPeps)
+                #print(refVarNonOverPeps)
             else:
                 print("Calling refPeptide with refVarNonOverPeps, zero refVarNonOverPeps")
                 refVarNonOverPeps=refPeptide(SSS, prtId, refVarPeps, rstart, rstop)
                 print("refVarNonOverPeps shape 0")
-                print(refVarNonOverPeps)
+                #print(refVarNonOverPeps)
         ##TGE specific peptides, even though they have not been identified, we need to know these for scoring
         orfId=orfVars.iloc[i]['QueryID']
         orfVarPeps=extractPeptide(SSS, orfId, ostart, ostop)
         print("getPeptideBoundary: ostart n ostop:"+str(ostart)+","+str(ostop))
         print("orfVarPeps:")
-        print(orfVarPeps)
+        #print(orfVarPeps)
         if orfVarPeps.shape[0]>0:
             if orfVarNonOverPeps.shape[0]>0:
                 print("Calling refPeptide with orfVarNonOverPeps, non-zero orfVarNonOverPeps")
                 orfVarNonOverPeps=orfVarNonOverPeps.append(refPeptide(SSS, orfId, orfVarPeps,ostart, ostop))
                 print("orfVarNonOverPeps is zero size")
-                print(orfVarNonOverPeps)
+                #print(orfVarNonOverPeps)
             else:
                 print("Calling refPeptide with orfVarNonOverPeps, zero orfVarNonOverPeps")
                 orfVarNonOverPeps=refPeptide(SSS, orfId, orfVarPeps,ostart, ostop)
                 print("orfVarNonOverPeps shape 0")
-                print(orfVarNonOverPeps)
+                #print(orfVarNonOverPeps)
     return {'ref':refVarNonOverPeps, 'orf':orfVarNonOverPeps}
 
 def getPeptideMutation(orfVars,SSS):
@@ -494,7 +494,7 @@ def getPeptideMutation(orfVars,SSS):
 		#start and stop location used here is suitable for internal variations, I need to change it for boundary variations. because 'ALT' and 'REF' is going to have '.'.
         refVarPeps=extractPeptide(SSS, prtId, int(orfVars.iloc[i]['POS']), len(orfVars.iloc[i]['REF'])+int(orfVars.iloc[i]['POS'])-1)
         print("refvarpeps:"+str(refVarPeps.shape[0]))
-        print(refVarPeps)
+        #print(refVarPeps)
         if refVarPeps.shape[0]>0:
             ##this may happen due to too long peptide covering the area.
             if refVarNonOverPeps.shape[0]>0:
@@ -538,7 +538,7 @@ def nonOverlappingPeptide(nonOverlapPeps, start, end):
     nonOverlapPeps['Start']=nonOverlapPeps['Start'].astype('int')
     nonOverlapPeps['Stop']=nonOverlapPeps['Stop'].astype('int')
     nonOverlapPeps['distFromStart']=start-nonOverlapPeps['Start']
-    print(nonOverlapPeps)
+    #print(nonOverlapPeps)
     if nonOverlapPeps[nonOverlapPeps['distFromStart']>=0].shape[0]>0:
         firstGrp=nonOverlapPeps[nonOverlapPeps['distFromStart']==min(nonOverlapPeps[nonOverlapPeps['distFromStart']>=0]['distFromStart'])]
     else:
@@ -552,7 +552,7 @@ def nonOverlappingPeptide(nonOverlapPeps, start, end):
         seqPeps=currPep.iloc[0]
         if currPep.shape[0]>1:
             print("there are 2 peptides with same start and length, this should not happen")
-            print(currPep)
+            #print(currPep)
 
         while int(currPep.iloc[0]['Stop'])<=end:
             nextPeps=nonOverlapPeps[nonOverlapPeps['Start']==int(currPep.iloc[0]['Stop'])+1]
@@ -574,7 +574,7 @@ def nonOverlappingPeptide(nonOverlapPeps, start, end):
     else:
         print("currPep is empty")
     print("In nonOverlappingPeptide")
-    print(seqPeps)
+    #print(seqPeps)
     return seqPeps
     '''
     if isinstance(seqPeps, pd.DataFrame):

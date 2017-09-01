@@ -3,6 +3,7 @@
 import pandas as pd
 import argparse
 import re
+import os
 from AminoAcidVariation import AminoAcidVariation
 
 def readFile(filename, sep):
@@ -527,7 +528,8 @@ vcf.Type=vcf.Type.str.replace('Type=','')
 vcf.QPOS=vcf.QPOS.str.replace('QPOS=','')    
 
 print(vcf.columns.values)
-newVcfFile2=args.annotation[0]+"_isoform_pep.vcf"
+nName, f_ext = os.path.splittext(args.output[0])
+newVcfFile2=nName+"_isoform_pepEvd.vcf"
 print("new file:"+newVcfFile2)
 with open(newVcfFile2,'w') as isoPep:
     peptidePerIsoform(peptides, vcf, isoIds, pepColumn, protRevStr, isoPep)
