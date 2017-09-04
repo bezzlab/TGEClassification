@@ -81,8 +81,8 @@ If you decide to run the scripts individually, run them in following order.
 
 ## Run test data
 
-You can try running the test data to check that all the components are working. All required file are available in the data folder except [MS file] (https://pitdb.sbcs.qmul.ac.uk/static/DM_from_raw.mgf), [Transcript fasta] (https://pitdb.sbcs.qmul.ac.uk/static/human_adeno.assemblies.fasta),
-[reference fasta file] (https://pitdb.sbcs.qmul.ac.uk/static/reference.fasta) and [GFF3 file] (https://pitdb.sbcs.qmul.ac.uk/static/human_adeno_mydb_pasa.assemblies.fasta.transdecoder.gff3)
+You can try running the test data to check that all the components are working. All required file are available in the data folder except [MS file] (https://pitdb.sbcs.qmul.ac.uk/static/DM_from_raw.mgf), [Transcript fasta](https://pitdb.sbcs.qmul.ac.uk/static/human_adeno.assemblies.fasta),
+[reference fasta file](https://pitdb.sbcs.qmul.ac.uk/static/reference.fasta) and [GFF3 file](https://pitdb.sbcs.qmul.ac.uk/static/human_adeno_mydb_pasa.assemblies.fasta.transdecoder.gff3)
 
 ### How to download "Reference protein chromosome location tsv"
 
