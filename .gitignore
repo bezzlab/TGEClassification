@@ -1,0 +1,2 @@
+# Don't track python object cache
+*__pychache__
