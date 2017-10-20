@@ -490,6 +490,7 @@ sId=4
 qId=0
 chromosome=22
 alignCol=9
+print(args)
 read(args.blast[0], matchCol, evalTheshold, evalCol, gTh, gCol, lCol, qLenCol, sLenCol, qSeqCol, sSeqCol, mSeqCol, qSt, qEnd, sSt, sEnd, sId, qId, chromosome, args.vcf[0], args.known[0], args.variation[0], args.isoform[0], args.isovar[0])
 
 #python IdentifyProteinIsoformSAP.py -b D:\data\Bristol\HumanAdeno\PASATransdecoder\pasa_transdecoder_nonstar_identified_Location.csv -k D:\data\Bristol\HumanAdeno\PASATransdecoder\known.csv -s D:\data\Bristol\HumanAdeno\PASATransdecoder\known_var.csv -v D:\data\Bristol\HumanAdeno\PASATransdecoder\pasa_transdecoder.vcf -i D:\data\Bristol\HumanAdeno\PASATransdecoder\isoform.csv -j D:\data\Bristol\HumanAdeno\PASATransdecoder\isovar.csv

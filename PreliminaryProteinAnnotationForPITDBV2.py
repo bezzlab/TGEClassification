@@ -33,7 +33,7 @@ args = parser.parse_args()
 f=args.blast[0]
 fBase=str(os.path.basename(f)).replace(".identified.loc.csv","")
 print(fBase)
-with open(args.output[o]+fBase+"_annotation.csv", 'w', newline='') as outfile:
+with open(args.output[0]+fBase+"_annotation.csv", 'w', newline='') as outfile:
 	outfile.write("ORF Id,Protein ID,Class,Variation,Species\n");
 	blast=readFile(f,',')
 	known=readFile(args.known[0],',')

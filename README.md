@@ -1,6 +1,17 @@
+# TGEClassification
 TGEClassififcation is a collection of tools for automated classififcation of ORFs identified from PIT analysis.
-Tools/Software pre-requisites: Python 3.6, panda 0.19, numpy, Bio-python, shell, R ( packages : seqinr,ada,nnet,randomForest,caret)
-Files:
+
+## Tools/Software pre-requisites:
+
+Python 3.6, panda 0.19, numpy, Bio-python, shell, R ( packages : seqinr,ada,nnet,randomForest,caret), BLAST, MSGF+ (included), mzIdentML-lib 1.6 (included)
+This pipeline has been tested on Red Hat Enterprise Linux HPC Node (v. 6) (64 bit).
+
+## Introduction
+
+Our pipeline requires assembled RNA-seq data and mass-spectrometry raw reads converted in mgf format. This classification pipeline has been tested with RNA-Seq data assembled using Trinity and PASA. We use MSGF+ for protein identification amd mzidentML-lib
+for post-processing, such as FDR calculation, thresholding and protein grouping. Our tools identify To use our pipleine you need following files.
+
+### Files
 1. PASA assembled Transcript file
 2. Transdecoder predicted ORFs
 3. Reference proteome in fasta format from Uniprot.
@@ -10,7 +21,48 @@ Files:
 7. Mass-spectra file in mfg format.
 8. GFF3 file produced by PASA for visualization (optional)
 
-Flowchart of the tools:
+## How to use the pipeline?
+
+Once pre-requisite tools/softwares have been installed and added to the path, you can simply download the scripts and run Launch.sh from the code directory. You can run individual scripts as well.
+
+## How to run?
+
+Launch.sh will run all the scripts of the pipeline in right orders.
+
+### Run Launch.sh
+
+You need all the files mentioned in [Files](#files) section to run Launch.sh.
+
+usage: Launch.sh
+
+[-u proteomefasta]
+
+[-p orffasta]
+
+[-r transcriptfasta]
+
+[-o outfolder]
+
+[-s mgffile]
+
+[-m modificationsFile]
+
+[-t tolerance deafault 10ppm]
+
+[-i instrument, deafault 1, options 1. Orbitrap/FTICR, 2. TOF, 3. Q-Exactive]
+
+[-f fragment method, default 1. Possoble values 1.CID, 2. ETD, 3. HCD]
+
+[-d decoysearch 0|1 default 1] [-c contaminantfile default crap.fasta]
+
+[-l minlengthpeptide interger default 8]
+
+[-v TSV file conatining reference protein location]
+
+[-g transdecoder generated sample.genome.gff3 file]
+
+
+If you decide to run the scripts individually, run them in following order.
 
 1. runProteinIdentificationAndPostProcessing_cluster.py with Transdecoder predicted ORFs [PIT Search]
 2. runProteinIdentificationAndPostProcessing_cluster.py with Reference fasta [Standard Search]
@@ -27,4 +79,19 @@ Flowchart of the tools:
 13. peptideEvidenceIsoforms.py - uses output from step 7, detailed annotation file from step 10 and filtered PSM csv file from step 3 to find isoform specific peptide evidence.
 14. IsoformScoring.py - this tool uses filtered Amino acid fasta file and protein and peptide/PSM outputs from MSGF+ for PIT search (step 3) and standard search (step 4) and vcf files from step 12 and 13. This tool predicts the probability of variants.
 
- 
+## Run test data
+
+You can try running the test data to check that all the components are working. All required file are available in the data folder except [MS file](https://pitdb.sbcs.qmul.ac.uk/static/DM_from_raw.mgf), [Transcript fasta](https://pitdb.sbcs.qmul.ac.uk/static/human_adeno.assemblies.fasta),
+[reference fasta file](https://pitdb.sbcs.qmul.ac.uk/static/reference.fasta) and [GFF3 file](https://pitdb.sbcs.qmul.ac.uk/static/human_adeno.assemblies.fasta.transdecoder.gff3)
+
+sh Launch.sh -u uniprot-proteomeUP000005640_2016.fasta -p human_adeno.assemblies.fasta.transdecoder.pep -r human_adeno.assemblies.fasta -o ./ -s DM_from_raw.mgf -m modifications.txt -t 20ppm -v HumanReferenceLocation.tsv -g human_adeno.assemblies.fasta.transdecoder.genome.gff3
+
+### How to download "Reference protein chromosome location tsv"
+
+Here is an example of downloading human proteome list with chromosome information for Uniprot website.
+
+![Alt text](Instruction1.png)
+
+![Alt text](Instruction2.png)
+
+![Alt text](Instruction3.png)

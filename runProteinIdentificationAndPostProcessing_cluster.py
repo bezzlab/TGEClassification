@@ -31,14 +31,14 @@ print("#!/bin/sh")
 print("#$ -cwd              # Set the working directory for the job to the current directory")
 print("#$ -V")
 print("#$ -l h_rt=120:0:0    # Request 240 hour runtime")
-print("#$ -l h_vmem=32G      # Request 4GB RAM")
+print("#$ -l h_vmem=40G      # Request 4GB RAM")
 
 #print("cd "+args.msgf_path[0])
 contaminants=args.contaminants
 #print("python merge_fasta_file.py "+args.database[0]+" "+contaminants+" "+args.database[0]+".cont.fasta")
 print("cat "+args.database[0] + "> "+args.database[0]+".cont.fasta")
 print("cat "+contaminants + ">> "+args.database[0]+".cont.fasta")
-command=" ".join(["java", "-Xmx12000M", "-jar", "MSGFPlus.jar","-s",args.input[0],"-d",args.database[0]+".cont.fasta","-o",args.output[0],"-mod",args.modification[0],"-t",args.tolerance[0],"-m",args.m_msgf[0],"-tda",args.tda[0],"-inst",args.inst[0],"-minLength",args.minLength[0],"-thread","8"])
+command=" ".join(["java", "-Xmx24000M", "-jar", "MSGFPlus.jar","-s",args.input[0],"-d",args.database[0]+".cont.fasta","-o",args.output[0],"-mod",args.modification[0],"-t",args.tolerance[0],"-m",args.m_msgf[0],"-tda",args.tda[0],"-inst",args.inst[0],"-minLength",args.minLength[0],"-thread","1"])
 print(command)
 outBase=os.path.splitext(args.output[0])[0]
 #print("cd "+args.mzident_path[0])
